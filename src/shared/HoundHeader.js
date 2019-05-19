@@ -10,6 +10,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items: baseline;
+flex-flow: wrap;
 `;
 
 const HoundHeading = styled.h1`
