@@ -2,21 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
-import { SceneWrapper, TextBox } from '../shared/Common';
+import { TextBox, Backdrop } from '../shared/Common';
 import BackgroundImage from './background.png';
 
-const Background = styled.div`
-    background: url(${BackgroundImage}) no-repeat center center fixed;
-    background-size: cover;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    z-index: 0;
+const Background = styled(Backdrop)`
+    background-image: url(${BackgroundImage});
 `;
 
 export default class ValleyScene extends StoryScene {
 
-    nextSubSceneSwitcher(currentScene) {
+    decideNextSubScene(currentScene) {
         switch(currentScene) {
             case 'init': return 'tantalizing';
             case 'tantalizing' : return 'head-down';
@@ -25,28 +20,29 @@ export default class ValleyScene extends StoryScene {
     }
 
     render() {
+        const { SubScene, SceneWrapper } = this;
         return (
-            <SceneWrapper onClick={this.nextTextEvent}>
+            <SceneWrapper>
                 <Background />
-                <this.SubScene name="init">
+                <SubScene name="init">
                     <TextBox>
                         As you reach the top of the hill, Houndville appears beneath you
                         in the next valley
                     </TextBox>
-                </this.SubScene>
+                </SubScene>
 
-                <this.SubScene name="tantalizing">
+                <SubScene name="tantalizing">
                     <TextBox>
                         For some reason it seems a tantalizing place
                     </TextBox>
-                </this.SubScene>
+                </SubScene>
 
-                <this.SubScene name="head-down">
+                <SubScene name="head-down">
                     <TextBox>
                         You head down towards a bridge. As you get closer you
                         can see a special kind of gate
                     </TextBox>
-                </this.SubScene>
+                </SubScene>
             </SceneWrapper>
         );
     }

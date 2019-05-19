@@ -24,3 +24,12 @@ export const TextBox = styled.p`
     font-size: 1.5em;
     max-width: 70%;
 `;
+
+export const Backdrop = styled.div`
+    background: url('replace-me.png') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+`;

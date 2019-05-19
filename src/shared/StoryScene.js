@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import { SceneWrapper as CommonSceneWrapper } from './Common';
+
 //  Story scene is based on a set of subscenes
 
 export default class StoryScene extends Component {
@@ -17,13 +19,21 @@ export default class StoryScene extends Component {
         return <div>{props.children}</div>;
     }
 
-    nextTextEvent = () => {
+    SceneWrapper = (props) => {
+        return (
+            <CommonSceneWrapper  onClick={this.changeSubScene}>
+                {props.children}
+            </CommonSceneWrapper>
+        );
+    }
+
+    changeSubScene = () => {
         this.setState({
-            subscene: this.nextSubSceneSwitcher(this.state.subscene)
+            subscene: this.decideNextSubScene(this.state.subscene)
         });
     }
 
-    nextSubSceneSwitcher(currentScene) {
+    decideNextSubScene(currentScene) {
         console.log('To be overridden');
     }
 }
