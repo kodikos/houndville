@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import HoundHeader from './shared/HoundHeader';
-import EntranceScene from './EntranceScene';
+import ValleyScene from './ValleyScene';
 
 const Screen = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ function App() {
   return (
     <Screen>
       <HoundHeader />
-      <EntranceScene />
+      <ValleyScene />
     </Screen>
   );
 }

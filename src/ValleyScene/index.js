@@ -2,13 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
-import { SceneWrapper } from '../shared/Common';
+import { SceneWrapper, TextBox } from '../shared/Common';
+import BackgroundImage from './background.png';
 
-export default class EntranceScene extends StoryScene {
+const Background = styled.div`
+    background: url(${BackgroundImage}) no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 0;
+`;
+
+export default class ValleyScene extends StoryScene {
 
     nextSubSceneSwitcher(currentScene) {
         switch(currentScene) {
-            case 'init': return 'scene2';
+            case 'init': return 'tantalizing';
+            case 'tantalizing' : return 'head-down';
             default: return 'init';
         }
     }
@@ -16,13 +27,25 @@ export default class EntranceScene extends StoryScene {
     render() {
         return (
             <SceneWrapper onClick={this.nextTextEvent}>
-                Hello from the scene!
+                <Background />
                 <this.SubScene name="init">
-                    This is the intro subscene
+                    <TextBox>
+                        As you reach the top of the hill, Houndville appears beneath you
+                        in the next valley
+                    </TextBox>
                 </this.SubScene>
 
-                <this.SubScene name="scene2">
-                    This is the next subscene
+                <this.SubScene name="tantalizing">
+                    <TextBox>
+                        For some reason it seems a tantalizing place
+                    </TextBox>
+                </this.SubScene>
+
+                <this.SubScene name="head-down">
+                    <TextBox>
+                        You head down towards a bridge. As you get closer you
+                        can see a special kind of gate
+                    </TextBox>
                 </this.SubScene>
             </SceneWrapper>
         );
