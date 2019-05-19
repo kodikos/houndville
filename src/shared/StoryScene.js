@@ -21,16 +21,21 @@ export default class StoryScene extends Component {
 
     SceneWrapper = (props) => {
         return (
-            <CommonSceneWrapper  onClick={this.changeSubScene}>
+            <CommonSceneWrapper onClick={this.changeSubSceneEvent}>
                 {props.children}
             </CommonSceneWrapper>
         );
     }
 
-    changeSubScene = () => {
+    changeSubScene = (sceneName) => {
         this.setState({
-            subscene: this.decideNextSubScene(this.state.subscene)
+            subscene: sceneName
         });
+    }
+
+    changeSubSceneEvent = () => {
+        const nextScene = this.decideNextSubScene(this.state.subscene);
+        this.changeSubScene(nextScene);
     }
 
     decideNextSubScene(currentScene) {

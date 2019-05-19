@@ -69,3 +69,17 @@ decideNextSubScene(currentScene) {
 This is a very simple logic at present, but it gives us the flexibility to write more complex logic if we need.
 
 So, a little more technically, how is it enabling this clarity? The magic is in [StoryScene](https://github.com/kodikos/houndville/blob/master/src/shared/StoryScene.js). This class acts as a tracker for which sub scene is currently on display by storing it in its' state. It checks which is currently set and only displays that sub scene. It also sets up the event on the scene wrapper to trap the click actions and call the `decideNextSubScene()` for you. 
+
+## Quizzes
+
+What's the fun of a game if it isn't interactive? 
+
+The Quiz works by acting like a decision tree for the next sub-scene to move to. It sets out the question, then when an answer is given, it moves it to a sub-scene that contains the result.
+
+It introduces a slightly tricky scenario in hiding the mechanics. Ideally, you want each answer to have an onclick that will perform the action of moving to the next sub-scene. But, in trying to hide it, we lose the context for working with the sub-scene.
+
+I have gone for minimizing the interaction by passing an event to the [Quiz](https://github.com/kodikos/houndville/blob/master/src/shared/Quiz.js) class. I use something close to magic in React to transform the child Choice components to add a reference to that event by creating my own onClick prop. React doesn't let you manipulate a child component, they are _immutable_. However, you can easily clone it and set up new props for it (here's a great post about working with [children in react](https://frontarm.com/james-k-nelson/passing-data-props-children/)). This is handled in the rendering of the Quiz component. Back in my scene, I just need to invoke it to change the sub-scene when that event is called.
+
+Something extra that I have to do is disable event bubbling. This is because I listen for clicks anywhere in the scene, and the buttons on the quiz are in the scene. I add the `e.stopPropagation()` to prevent the event being fired for the scene as well.
+
+The quiz mechanism can potentially be used for introducing alternative story narratives and a choice of sub-scene. This is where the flexibility of the `decideNextSubScene()` comes in handy to manage this.
