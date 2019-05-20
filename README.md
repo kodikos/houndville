@@ -28,6 +28,8 @@ npm start
 
 # The Game
 
+Currently hosting at: https://kodikos.github.io/houndville
+
 The game is comprised of scenes that tell a small part of the story through text boxes that appear. Clicking anywhere on the screen moves through the story. Occasionally questions are asked before you can continue, which I will use to score and unlock the next scene.
 
 # Guide to Demonstration
