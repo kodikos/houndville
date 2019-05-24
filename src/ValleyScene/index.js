@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
@@ -32,7 +33,7 @@ export default class ValleyScene extends StoryScene {
     }
 
     render() {
-        const { SubScene, SceneWrapper } = this;
+        const { SubScene, SceneWrapper, ChangeScene } = this;
         return (
             <SceneWrapper>
                 <Background />
@@ -89,7 +90,7 @@ export default class ValleyScene extends StoryScene {
 
                 <SubScene name="over-the-bridge">
                     <TextBox>
-                        You go over the bridge and stand before the drawbridge...
+                        <Link to="/entrance">Click here to proceed to the drawbridge</Link>
                     </TextBox>
                 </SubScene>
             </SceneWrapper>
