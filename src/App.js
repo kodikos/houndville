@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import HoundHeader from './shared/HoundHeader';
@@ -16,12 +16,12 @@ function App() {
   return (
     <Screen>
       <HoundHeader />
-      <BrowserRouter>
+      <HashRouter>
           <Switch>
             <Route exact path="/" component={ValleyScene} />
             <Route exact path="/entrance" component={EntranceScene} />
           </Switch>
-        </BrowserRouter>
+        </HashRouter>
     </Screen>
   );
 }
