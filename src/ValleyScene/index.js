@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
@@ -94,9 +93,7 @@ export default class ValleyScene extends StoryScene {
                     </TextBox>
                 </SubScene>
 
-                <SubScene name="next-scene">
-                    <Redirect push to="/entrance" />
-                </SubScene>
+                <ChangeScene name="next-scene" to="entrance" />
             </SceneWrapper>
         );
     }

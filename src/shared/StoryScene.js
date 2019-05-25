@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 import { SceneWrapper as CommonSceneWrapper } from './Common';
 
@@ -29,6 +30,14 @@ export default class StoryScene extends Component {
             <CommonSceneWrapper onClick={this.changeSubSceneEvent}>
                 {props.children}
             </CommonSceneWrapper>
+        );
+    }
+
+    ChangeScene = (props) => {
+        return (
+            <this.SubScene name={props.name}>
+                <Redirect push to={'/' + props.to} />
+            </this.SubScene>
         );
     }
 
