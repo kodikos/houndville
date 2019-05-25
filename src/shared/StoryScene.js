@@ -3,6 +3,11 @@ import styled from 'styled-components';
 
 import { SceneWrapper as CommonSceneWrapper } from './Common';
 
+const SubSceneDiv = styled.div`
+    width: 100%;
+    height: 100%;
+`;
+
 //  Story scene is based on a set of subscenes
 
 export default class StoryScene extends Component {
@@ -16,7 +21,7 @@ export default class StoryScene extends Component {
 
     SubScene = (props) => {
         if (props.name !== this.state.subscene) { return null;}
-        return <div>{props.children}</div>;
+        return <SubSceneDiv>{props.children}</SubSceneDiv>;
     }
 
     SceneWrapper = (props) => {
