@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
@@ -23,7 +23,7 @@ export default class ValleyScene extends StoryScene {
             case 'quiz-moat' :
             case 'quiz-portcullis' :
                 return 'quiz-gate-name';
-            case 'over-the-bridge' : return 'over-the-bridge';
+            case 'over-the-bridge' : return 'next-scene';
             default: return 'init';
         }
     }
@@ -90,8 +90,12 @@ export default class ValleyScene extends StoryScene {
 
                 <SubScene name="over-the-bridge">
                     <TextBox>
-                        <Link to="/entrance">Click here to proceed to the drawbridge</Link>
+                        You go over the bridge and stand before the drawbridge...
                     </TextBox>
+                </SubScene>
+
+                <SubScene name="next-scene">
+                    <Redirect push to="/entrance" />
                 </SubScene>
             </SceneWrapper>
         );
