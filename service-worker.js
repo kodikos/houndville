@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/houndville/precache-manifest.b5c0384b74c6d52e8beff08e23a24664.js"
+  "/houndville/precache-manifest.f541e2f06471f459d72f886b4487b461.js"
 );
 
 self.addEventListener('message', (event) => {
