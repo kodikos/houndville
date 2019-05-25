@@ -85,3 +85,13 @@ I have gone for minimizing the interaction by passing an event to the [Quiz](htt
 Something extra that I have to do is disable event bubbling. This is because I listen for clicks anywhere in the scene, and the buttons on the quiz are in the scene. I add the `e.stopPropagation()` to prevent the event being fired for the scene as well.
 
 The quiz mechanism can potentially be used for introducing alternative story narratives and a choice of sub-scene. This is where the flexibility of the `decideNextSubScene()` comes in handy to manage this.
+
+## Scenes
+
+A good way to organize the game is to have each of the scenes on a different URL. This can help with things like navigating through to different parts of a game.
+
+This introduces the `react-router-dom` package, a.k.a React Router v4. If you look in the [main App class](https://github.com/kodikos/houndville/blob/master/src/App.js), you see the `BrowserRouter`, `Switch`, and `Route` classes being used. This simple set up allows us to define a component to sit on a URL (web address), the _exact_ keyword and `Switch` class help make it a specific URL. This is set out a lot like a web server that you might set up with Express, page routing is typically something that's only done by a web server.
+
+We have to do something a little different from normal HTML to move around between scenes.. wait, what? A React app is not necessarily rendering a page, it's a javascript application that can be rendered on the server or in your browser, you may not even be aware which way it's doing it! When it's running from a browser, it doesn't need to go back to the server because it already has everything it needs. It uses URLs as a consistent way to refer to different parts of the app no matter which mode it's running in. Because of this it needs to abstract the way you use routing.
+
+The two extra components provided for changing the URL are `Link` and `Redirect`. A `Link` component sets up a special anchor tag so that you can click on a link and it takes you elsewhere in the app. `Redirect` works a little differently, when it is rendered it will cause the app to go elsewhere in the app. It is normally within a conditional so that it appears when you need it to. You can see `Redirect` used in this app in the last subscene of the [valley scene](https://github.com/kodikos/houndville/blob/master/src/ValleyScene/index.js). The ChangeScene component defined in [StoryScene](https://github.com/kodikos/houndville/blob/master/src/shared/StoryScene.js) sets up a special type of SubScene so that when it switches from the `under-the-bridge` subscene to `next-scene` it renders the `Redirect` component and causes the switch to the entrance scene.

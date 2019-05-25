@@ -22,7 +22,7 @@ export default class ValleyScene extends StoryScene {
             case 'quiz-moat' :
             case 'quiz-portcullis' :
                 return 'quiz-gate-name';
-            case 'over-the-bridge' : return 'over-the-bridge';
+            case 'over-the-bridge' : return 'next-scene';
             default: return 'init';
         }
     }
@@ -32,7 +32,7 @@ export default class ValleyScene extends StoryScene {
     }
 
     render() {
-        const { SubScene, SceneWrapper } = this;
+        const { SubScene, SceneWrapper, ChangeScene } = this;
         return (
             <SceneWrapper>
                 <Background />
@@ -92,6 +92,8 @@ export default class ValleyScene extends StoryScene {
                         You go over the bridge and stand before the drawbridge...
                     </TextBox>
                 </SubScene>
+
+                <ChangeScene name="next-scene" to="entrance" />
             </SceneWrapper>
         );
     }

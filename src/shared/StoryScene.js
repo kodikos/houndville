@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
 import { SceneWrapper as CommonSceneWrapper } from './Common';
+
+const SubSceneDiv = styled.div`
+    width: 100%;
+    height: 100%;
+`;
 
 //  Story scene is based on a set of subscenes
 
@@ -16,7 +22,7 @@ export default class StoryScene extends Component {
 
     SubScene = (props) => {
         if (props.name !== this.state.subscene) { return null;}
-        return <div>{props.children}</div>;
+        return <SubSceneDiv>{props.children}</SubSceneDiv>;
     }
 
     SceneWrapper = (props) => {
@@ -24,6 +30,14 @@ export default class StoryScene extends Component {
             <CommonSceneWrapper onClick={this.changeSubSceneEvent}>
                 {props.children}
             </CommonSceneWrapper>
+        );
+    }
+
+    ChangeScene = (props) => {
+        return (
+            <this.SubScene name={props.name}>
+                <Redirect push to={'/' + props.to} />
+            </this.SubScene>
         );
     }
 
