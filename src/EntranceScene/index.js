@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
 import { TextBox as BaseTextBox, Backdrop } from '../shared/Common';
+import ScoreBoard from '../shared/ScoreBoard';
 import { Quiz, Question, Choice } from '../shared/Quiz';
 import BackgroundImage from './background.png';
 
@@ -28,6 +29,7 @@ export default class EntranceScene extends StoryScene {
         return (
             <SceneWrapper>
                 <Background />
+                <ScoreBoard progress={this.props.progress} />
                 <SubScene name="init">
                     <TextBox>
                         I can't believe it, no one is guarding the entrance
