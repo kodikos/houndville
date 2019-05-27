@@ -26,6 +26,23 @@ const RoutingWrapper = (props) =>
     </HashRouter>;
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            completed: []
+        }
+    }
+
+    onCompleted(stage) {
+        if (this.state.completed.includes(stage)) {
+            return;
+        }
+
+        this.setState({
+            completed: Array.concat(this.state.completed, [stage])
+        });
+    }
+
     render() {
         return (
             <PageWrapper>
