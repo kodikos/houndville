@@ -51,5 +51,5 @@ const Purse = styled.div`
 
 export const ScoreBoard = (props) =>
     <Purse>
-        {props.progress.map(() => <PawCoin />)}
+        {props.progress.map((stage) => <PawCoin key={stage} />)}
     </Purse>;

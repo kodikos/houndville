@@ -12,6 +12,18 @@ const Screen = styled.div`
     min-height: 100vh;
 `;
 
+const NotEnoughPointsNotice = styled.div`
+  width: 50vw;
+  margin: 25vh 25vw;
+  padding: 5vh 5vw;
+  border: 3px solid black;
+  border-radius: 5vh;
+  background: red;
+  color: white;
+  text-align: center;
+  font-size: 2.5em;
+`;
+
 const PageWrapper = (props) => 
     <Screen>
         <HoundHeader />
@@ -44,6 +56,16 @@ class App extends Component {
     }
 
     SceneRoute = ({ component: Component, ...sceneProps}) => {
+        if (sceneProps.requires &&
+            !this.state.completed.includes(sceneProps.requires)) {
+            return (
+                <NotEnoughPointsNotice>
+                    You do not have enough points to access this part
+                    of the game yet!
+                </NotEnoughPointsNotice>
+            );
+        }
+
         return <Route {...sceneProps}
             render={(props) => {
                 return (<Component
@@ -61,7 +83,7 @@ class App extends Component {
             <PageWrapper>
                 <RoutingWrapper>
                     <SceneRoute exact path="/" component={ValleyScene} />
-                    <SceneRoute path="/entrance" component={EntranceScene} />
+                    <SceneRoute path="/entrance" component={EntranceScene} requires="valley" />
                 </RoutingWrapper>
             </PageWrapper>
         );
