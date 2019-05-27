@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import pawCoinImg from './paw_coin.png';
 
 export const SceneWrapper = styled.main`
     background: #cfa7a7;
@@ -33,3 +34,22 @@ export const Backdrop = styled.div`
     position: absolute;
     z-index: 0;
 `;
+
+const PawCoin = styled.img.attrs({
+    src: pawCoinImg,
+    alt: 'one paw coin'
+})`
+    width: 4em;
+    height: 4em;
+`;
+
+const Purse = styled.div`
+    position: absolute;
+    top: 2vh;
+    right: 2vh;
+`;
+
+export const ScoreBoard = (props) =>
+    <Purse>
+        {props.progress.map(() => <PawCoin />)}
+    </Purse>;
