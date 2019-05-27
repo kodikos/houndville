@@ -43,12 +43,25 @@ class App extends Component {
         });
     }
 
+    SceneRoute = ({ component: Component, ...sceneProps}) => {
+        return <Route {...sceneProps}
+            render={(props) => {
+                return (<Component
+                    {...props}
+                    progress={this.state.completed}
+                    onCompleted={this.onCompleted}
+                  />);
+            }}
+        />
+    };
+
     render() {
+        const { SceneRoute } = this;
         return (
             <PageWrapper>
                 <RoutingWrapper>
-                    <Route exact path="/" component={ValleyScene} />
-                    <Route exact path="/entrance" component={EntranceScene} />
+                    <SceneRoute exact path="/" component={ValleyScene} />
+                    <SceneRoute path="/entrance" component={EntranceScene} />
                 </RoutingWrapper>
             </PageWrapper>
         );
