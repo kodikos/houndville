@@ -28,7 +28,7 @@ export default class EntranceScene extends StoryScene {
         return (
             <SceneWrapper>
                 <Background />
-                <ScoreBoard progress={[1,2]} />
+                <ScoreBoard progress={this.props.progress} />
                 <SubScene name="init">
                     <TextBox>
                         I can't believe it, no one is guarding the entrance

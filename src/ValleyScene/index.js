@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
-import { TextBox, Backdrop } from '../shared/Common';
+import { TextBox, Backdrop, ScoreBoard } from '../shared/Common';
 import { Quiz, Question, Choice } from '../shared/Quiz';
 import BackgroundImage from './background.png';
 
@@ -28,6 +28,9 @@ export default class ValleyScene extends StoryScene {
     }
 
     handleQuizAnswer = (next, isCorrect) => {
+        if (isCorrect) {
+            this.props.onCompleted('valley');
+        }
         this.changeSubScene(next);
     }
 
@@ -36,6 +39,7 @@ export default class ValleyScene extends StoryScene {
         return (
             <SceneWrapper>
                 <Background />
+                <ScoreBoard progress={this.props.progress} />
                 <SubScene name="init">
                     <TextBox>
                         As you reach the top of the hill, Houndville appears beneath you
@@ -60,7 +64,7 @@ export default class ValleyScene extends StoryScene {
                     <Quiz onAnswer={this.handleQuizAnswer}>
                         <Question>What is the name of a gate that drops down 
                             over water?</Question>
-                        <Choice next="quiz-drawbridge">Drawbridge</Choice>
+                        <Choice correct next="quiz-drawbridge">Drawbridge</Choice>
                         <Choice next="quiz-moat">Moat</Choice>
                         <Choice next="quiz-portcullis">Portcullis</Choice>
                     </Quiz>

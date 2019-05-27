@@ -49,7 +49,7 @@ class App extends Component {
                 return (<Component
                     {...props}
                     progress={this.state.completed}
-                    onCompleted={this.onCompleted}
+                    onCompleted={(stage) => this.onCompleted(stage)}
                   />);
             }}
         />
