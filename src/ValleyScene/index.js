@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import StoryScene from '../shared/StoryScene';
-import { TextBox, Backdrop, ScoreBoard } from '../shared/Common';
+import { TextBox, Backdrop } from '../shared/Common';
+import ScoreBoard from '../shared/ScoreBoard';
 import { Quiz, Question, Choice } from '../shared/Quiz';
 import BackgroundImage from './background.png';
 
