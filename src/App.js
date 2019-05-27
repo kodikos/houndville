@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { HashRouter, Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -7,23 +7,35 @@ import ValleyScene from './ValleyScene';
 import EntranceScene from './EntranceScene';
 
 const Screen = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 `;
 
-function App() {
-  return (
+const PageWrapper = (props) => 
     <Screen>
-      <HoundHeader />
-      <HashRouter>
-          <Switch>
-            <Route exact path="/" component={ValleyScene} />
-            <Route exact path="/entrance" component={EntranceScene} />
-          </Switch>
-        </HashRouter>
-    </Screen>
-  );
+        <HoundHeader />
+        {props.children}
+    </Screen>;
+
+const RoutingWrapper = (props) =>
+    <HashRouter>
+        <Switch>
+            {props.children}
+        </Switch>
+    </HashRouter>;
+
+class App extends Component {
+    render() {
+        return (
+            <PageWrapper>
+                <RoutingWrapper>
+                    <Route exact path="/" component={ValleyScene} />
+                    <Route exact path="/entrance" component={EntranceScene} />
+                </RoutingWrapper>
+            </PageWrapper>
+        );
+    }
 }
 
 export default App;
